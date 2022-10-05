@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children, path }) => {
     const contextValue = useContext(CurrentUserContext);
     return (
         <Route exact path={path}>
-            {() => contextValue.loggedIn ? children : <Redirect to="/sign-in" />}
+            {() => contextValue.loggedIn ? children : <Redirect to="/sign-up" />}
         </Route>
 
     )

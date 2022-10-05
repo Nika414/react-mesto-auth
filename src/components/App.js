@@ -51,6 +51,11 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
+  function handleSetIsInfoTooltipOpen(e) {
+    e.preventDefault();
+    setIsInfoTooltipOpen(true)
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -124,11 +129,11 @@ function App() {
         </ProtectedRoute>
         <Switch>
           <Route exact path="/sign-up">
-              <Register />
+              <Register onSubmit={handleSetIsInfoTooltipOpen} />
+              <InfoTooltip name="info-tooltip" isOpen={isInfoTooltipOpen} isClose={!isInfoTooltipOpen} onClose={closeAllPopups} />
           </Route>
           <Route exact path="/sign-in">
               <Login />
-              <InfoTooltip name="info-tooltip" isOpen={isInfoTooltipOpen} isClose={!isInfoTooltipOpen} onClose={closeAllPopups} />
           </Route>
         </Switch>
         <Footer />

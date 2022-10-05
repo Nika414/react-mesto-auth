@@ -88,3 +88,8 @@
 /*Registration*/
 @import url(./blocks/registration/__text/registration__text.css);
 @import url(./blocks/registration/__link/registration__link.css);
+
+/*{POPUP регистрации*/
+@import url(./blocks/popup/__container/_purpose/popup__container_purpose_info-tooltip.css);
+@import url(./blocks/popup/__info-tooltop-image/popup__info-tooltip-image.css);
+@import url(./blocks/popup/__info-tooltip-text/popup__info-tooltip-text.css);
