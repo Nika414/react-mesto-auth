@@ -1,4 +1,4 @@
-.registration__form-input {
+.auth__form-input {
     width: 358px;
     border: none;
     border-bottom: 2px solid #CCCCCC;
@@ -6,7 +6,7 @@
     color: white;
 }
 
-.registration__form-input::placeholder {
+.auth__form-input::placeholder {
     width: 358px;
     height: 14px;
     font-family: 'Inter';
@@ -18,10 +18,10 @@
     margin: 0 0 13px 0;
 }
 
-.registration__form-input:nth-of-type(1) {
+.auth__form-input:nth-of-type(1) {
     margin: 0 0 30px 0;
 }
 
-.registration__form-input:nth-of-type(2) {
+.auth__form-input:nth-of-type(2) {
     margin: 0 0 216px 0;
 }

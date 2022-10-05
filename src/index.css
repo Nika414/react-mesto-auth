@@ -78,11 +78,13 @@
 @import url(./blocks/popup/__avatar-edit-text/popup__avatar-edit-text.css);
 @import url(./blocks/popup/__form-label/_value_avatar-link/popup__form-label_value_avatar-link.css);
 
-/*Registration*/
+/*Auth*/
 
-@import url(./blocks/registration/registration.css);
-@import url(./blocks/registration/__header/registration__header.css);
-@import url(./blocks/registration/__form-input/registration__form-input.css);
-@import url(./blocks/registration/__form-button/registration__form-button.css);
+@import url(./blocks/auth/auth.css);
+@import url(./blocks/auth/__header/auth__header.css);
+@import url(./blocks/auth/__form-input/auth__form-input.css);
+@import url(./blocks/auth/__form-button/auth__form-button.css);
+
+/*Registration*/
 @import url(./blocks/registration/__text/registration__text.css);
 @import url(./blocks/registration/__link/registration__link.css);
