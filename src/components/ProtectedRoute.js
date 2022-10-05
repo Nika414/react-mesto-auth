@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from "react-router-dom";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-const ProtectedRoute = ({ loggedIn, children, path  }) => {
-  return ( 
-    <Route exact path={path}>
-   {() => loggedIn ? children : <Redirect to="/sign-in" />}
-  </Route>
-    
-)};
+
+
+const ProtectedRoute = ({ children, path }) => {
+    const contextValue = useContext(CurrentUserContext);
+    return (
+        <Route exact path={path}>
+            {() => contextValue.loggedIn ? children : <Redirect to="/sign-in" />}
+        </Route>
+
+    )
+};
 
 export default ProtectedRoute;

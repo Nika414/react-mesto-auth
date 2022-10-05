@@ -114,7 +114,7 @@ function App() {
   }
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ currentUser, loggedIn }}>
       <div className="App">
         <Header />
         <ProtectedRoute path="/" loggedIn={loggedIn}>

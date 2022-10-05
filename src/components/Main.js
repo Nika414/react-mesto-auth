@@ -5,20 +5,20 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 
 function Main({ onEditAvatar, onCardClick, onEditProfile, onAddPlace, cards, onCardLike, onCardDelete }) {
-    const currentUser = useContext(CurrentUserContext);
+    const contextValue = useContext(CurrentUserContext);
 
     return (
         <main className="main">
             <section className="profile">
-                <div className="profile__avatar" style={{ backgroundImage: `url(${currentUser.avatar})` }} >
+                <div className="profile__avatar" style={{ backgroundImage: `url(${contextValue.currentUser.avatar})` }} >
                     <img src={penIcon} alt="Обновить аватар" className="profile__avatar-edit" onClick={onEditAvatar} />
                 </div>
                 <div className="profile__info">
                     <div className="profile__name-edit">
-                        <h1 className="profile__name">{currentUser.name}</h1>
+                        <h1 className="profile__name">{contextValue.currentUser.name}</h1>
                         <button className="profile__edit-button" type="button" aria-label="Редактировать" onClick={onEditProfile} ></button>
                     </div>
-                    <p className="profile__about">{currentUser.about}</p>
+                    <p className="profile__about">{contextValue.currentUser.about}</p>
                 </div>
 
                 <button className="profile__add-button" type="button" aria-label="Добавить фото" onClick={onAddPlace}></button>
