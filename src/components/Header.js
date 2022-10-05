@@ -8,7 +8,7 @@ function Header() {
         <img src={logo} alt="Лого Место" className="header__logo" />
         <div className="header__login-info">
         <p className="header__user-info">jfjfkfkf</p>
-        <Link className="header__exit">Выйти</Link>
+        <Link to='/sign-in' className="header__exit" >Выйти</Link>
         </div>
       </header>
       
