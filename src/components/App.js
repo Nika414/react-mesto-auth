@@ -22,14 +22,16 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [isSubmitSucceed, setIsSubmitSucceed] = useState(false)
 
   useEffect(() => {
     Promise.all([api.getProfileInfo(), api.getCardsInfo()])
       .then(([dataUser, dataCards]) => {
         setCurrentUser(dataUser);
         setCards(dataCards);
+        console.log(dataUser);
       })
       .catch((err) => { console.log(err) })
   }, [])
@@ -51,9 +53,9 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function handleSetIsInfoTooltipOpen(e) {
-    e.preventDefault();
-    setIsInfoTooltipOpen(true)
+  function handleSetIsInfoTooltipOpen(isSubmitSucceed) {
+    setIsInfoTooltipOpen(true);
+    setIsSubmitSucceed(isSubmitSucceed)
   }
 
   function closeAllPopups() {
@@ -123,14 +125,14 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-          <ProtectedRoute path="/" loggedIn={loggedIn}>
+          <ProtectedRoute exact path="/" loggedIn={loggedIn}>
             <Main cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete}
               onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
               onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} />
           </ProtectedRoute>
           <Route path="/sign-up">
             <Register onSubmit={handleSetIsInfoTooltipOpen} />
-            <InfoTooltip name="info-tooltip" isOpen={isInfoTooltipOpen} isClose={!isInfoTooltipOpen} onClose={closeAllPopups} />
+            <InfoTooltip name="info-tooltip" isSubmitSucceed={isSubmitSucceed} isOpen={isInfoTooltipOpen} isClose={!isInfoTooltipOpen} onClose={closeAllPopups} />
           </Route>
           <Route path="/sign-in">
             <Login />

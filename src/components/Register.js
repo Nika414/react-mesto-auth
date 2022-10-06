@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { register } from './Auth';
 
-export default function Register({onSubmit}) {
+export default function Register({ onSubmit }) {
     const [state, setState] = useState({
         email: '',
         password: ''
@@ -15,15 +16,18 @@ export default function Register({onSubmit}) {
         });
     };
 
-    // function handleSubmit(e) {
-    //     e.preventDefault();
+    function handleSubmit(e) {
+        e.preventDefault();
+        register(state.password, state.email)
+            .then((res) => { console.log(res); if (res.status === 201) { onSubmit(true); } else { onSubmit(false) } })
+            .catch(onSubmit(false))
 
-    // }
+    }
 
     return (
         <div className="registration auth">
             <h3 className="registration__header auth__header">Регистрация</h3>
-            <form className="registration__form auth__form" onSubmit={onSubmit}>
+            <form className="registration__form auth__form" onSubmit={handleSubmit}>
                 <input name="email" className="registration__form-input auth__form-input" onChange={handleChange} placeholder="Email" type="email"></input>
                 <input name="password" className="registration__form-input auth__form-input" onChange={handleChange} placeholder="Пароль" type="password"></input>
                 <button className="registration__form-button auth__form-button" type="submit">Зарегистрироваться</button>

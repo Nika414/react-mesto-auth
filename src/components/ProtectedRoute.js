@@ -7,7 +7,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 const ProtectedRoute = ({ children, path }) => {
     const contextValue = useContext(CurrentUserContext);
     return (
-        <Route exact path={path}>
+        <Route path={path}>
             {() => contextValue.loggedIn ? children : <Redirect to="/sign-up" />}
         </Route>
 
