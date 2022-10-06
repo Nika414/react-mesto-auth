@@ -122,18 +122,18 @@ function App() {
     <CurrentUserContext.Provider value={{ currentUser, loggedIn }}>
       <div className="App">
         <Header />
-        <ProtectedRoute path="/" loggedIn={loggedIn}>
-          <Main cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} 
-          onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} 
-          onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} />
-        </ProtectedRoute>
         <Switch>
-          <Route exact path="/sign-up">
-              <Register onSubmit={handleSetIsInfoTooltipOpen} />
-              <InfoTooltip name="info-tooltip" isOpen={isInfoTooltipOpen} isClose={!isInfoTooltipOpen} onClose={closeAllPopups} />
+          <ProtectedRoute path="/" loggedIn={loggedIn}>
+            <Main cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete}
+              onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} />
+          </ProtectedRoute>
+          <Route path="/sign-up">
+            <Register onSubmit={handleSetIsInfoTooltipOpen} />
+            <InfoTooltip name="info-tooltip" isOpen={isInfoTooltipOpen} isClose={!isInfoTooltipOpen} onClose={closeAllPopups} />
           </Route>
-          <Route exact path="/sign-in">
-              <Login />
+          <Route path="/sign-in">
+            <Login />
           </Route>
         </Switch>
         <Footer />
