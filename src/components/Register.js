@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { register } from './Auth';
 
-export default function Register({ onSubmit }) {
+export default function Register({ onRegister }) {
     const [state, setState] = useState({
         email: '',
         password: ''
@@ -18,10 +17,7 @@ export default function Register({ onSubmit }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        register(state.password, state.email)
-            .then((res) => { console.log(res); if (res.status === 201) { onSubmit(true); } else { onSubmit(false) } })
-            .catch(onSubmit(false))
-
+        onRegister(state.password, state.email);
     }
 
     return (
@@ -32,7 +28,7 @@ export default function Register({ onSubmit }) {
                 <input name="password" className="registration__form-input auth__form-input" onChange={handleChange} placeholder="Пароль" type="password"></input>
                 <button className="registration__form-button auth__form-button" type="submit">Зарегистрироваться</button>
             </form>
-            <p className="registration__text">Уже зарегистрированы? <Link to='/sign-in' className="registration__link">Войти</Link></p>
+            <p className="registration__text">Уже зарегистрированы? <Link to='/react-mesto-auth/sign-in' className="registration__link">Войти</Link></p>
         </div>
     );
 }

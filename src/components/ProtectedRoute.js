@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children, path }) => {
     const contextValue = useContext(CurrentUserContext);
     return (
         <Route path={path}>
-            {() => contextValue.loggedIn ? children : <Redirect to="/sign-up" />}
+            {() => contextValue.loggedIn ? children : <Redirect to="/react-mesto-auth/sign-up" />}
         </Route>
 
     )
