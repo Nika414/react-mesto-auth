@@ -29,13 +29,13 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
+    tokenCheck();
     Promise.all([api.getProfileInfo(), api.getCardsInfo()])
       .then(([dataUser, dataCards]) => {
         setCurrentUser(dataUser);
         setCards(dataCards);
       })
       .catch((err) => { console.log(err) });
-      tokenCheck();
   }, [])
 
 
