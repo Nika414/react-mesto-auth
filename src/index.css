@@ -10,8 +10,13 @@
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__login-info/header__login-info.css);
 @import url(./blocks/header/__logo/header__logo.css);
-@import url(./blocks/header/__exit/header__exit.css);
+@import url(./blocks/header/__link/header__link.css);
 @import url(./blocks/header/__user-info/header__user-info.css);
+@import url(./blocks/header/__menu/header__menu.css);
+@import url(./blocks/header/_menu-opened/header_menu-opened.css);
+@import url(./blocks/header/__login-info/_menu-opened/header__login-info_menu-opened.css);
+@import url(./blocks/header/__link/_menu-opened/header__link_menu_opened.css);
+@import url(./blocks/header/__user-info/_menu-opened/header__user-info_menu-opened.css);
 
 /*Profile*/
 

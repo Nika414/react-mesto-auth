@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from "react-router-dom";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 
 
-const ProtectedRoute = ({ children, path }) => {
-    const contextValue = useContext(CurrentUserContext);
+
+const ProtectedRoute = ({ children, path, loggedIn }) => {
+    
     return (
         <Route path={path}>
-            {() => contextValue.loggedIn ? children : <Redirect to="/react-mesto-auth/sign-up" />}
+            {() => loggedIn ? children : <Redirect to="/sign-up" />}
         </Route>
 
     )

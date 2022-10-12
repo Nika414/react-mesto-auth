@@ -1,23 +1,23 @@
-.header__user-info {
+.header__link {
     height: 22px;
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    text-align: right;
-    color: #FFFFFF;
-    margin: 51px 24px 46px 0;
+    color: #A9A9A9;
+    text-decoration: none;
+    margin: 51px 0 46px 0;
 }
 
 @media screen and (max-width:940px) {
-    .header__user-info {
-        margin: 39px 24px 31.6px auto;
+    .header__link {
+        margin: 39px 8.44% 31.6px 0;
     }
 }
 
 @media screen and (max-width:320px) {
-    .header__user-info {
+    .header__link {
         height: 17px;
         margin: 34px 30px 33px 0;
         font-size: 14px;

@@ -28,7 +28,7 @@ export default function Register({ onRegister }) {
                 <input name="password" className="registration__form-input auth__form-input" onChange={handleChange} placeholder="Пароль" type="password"></input>
                 <button className="registration__form-button auth__form-button" type="submit">Зарегистрироваться</button>
             </form>
-            <p className="registration__text">Уже зарегистрированы? <Link to='/react-mesto-auth/sign-in' className="registration__link">Войти</Link></p>
+            <p className="registration__text">Уже зарегистрированы? <Link to='/sign-in' className="registration__link">Войти</Link></p>
         </div>
     );
 }

@@ -11,7 +11,7 @@ export const registerApi = (password, email) => {
     });
 }; 
 
-export const loginApi =(password,email) => {
+export const loginApi =(password, email) => {
     return fetch(`${BASE_URL}signin`, {
         method: 'POST',
         headers: {

@@ -9,7 +9,7 @@ import api from '../utils/api.js';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 import ProtectedRoute from "./ProtectedRoute";
@@ -17,7 +17,7 @@ import InfoTooltip from './InfoTooltip';
 import { registerApi, loginApi, getContent } from './Auth';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState('');
+  const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -27,15 +27,18 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isSubmitSucceed, setIsSubmitSucceed] = useState(true)
   const history = useHistory();
+  const location = useLocation()
+
 
   useEffect(() => {
-    tokenCheck();
+    
     Promise.all([api.getProfileInfo(), api.getCardsInfo()])
       .then(([dataUser, dataCards]) => {
-        setCurrentUser(dataUser);
+        setCurrentUser(dataUser)
         setCards(dataCards);
       })
-      .catch((err) => { console.log(err) });
+      .catch((err) => { console.log(err) })
+      tokenCheck();
   }, [])
 
 
@@ -50,7 +53,7 @@ function App() {
           ...currentUser,
           email: email
         });
-        history.push('/react-mesto-auth/')
+        history.push('/')
       })
       .catch((error) => {
         console.log(error);
@@ -58,14 +61,22 @@ function App() {
   }
 
   const tokenCheck = () => {
+
     const jwt = localStorage.getItem('jwt');
+
     if (!jwt) return;
     getContent(jwt)
       .then(res => res.json())
       .then((data) => {
+        console.log(data);
         setLoggedIn(true);
-        setCurrentUser(data)
-        history.push('/react-mesto-auth/');
+        history.push('/');
+        setCurrentUser({
+          ...currentUser,
+          email: data.data.email
+        });
+        console.log(currentUser);
+        
       })
       .catch((error) => {
         console.log(error);
@@ -124,7 +135,7 @@ function handleLogout() {
 
   function closeInfoToolTip() {
     setIsInfoTooltipOpen(false);
-    history.push('/react-mesto-auth/sign-in');
+    history.push('/sign-in');
   }
 
   function handleUpdateUser(data) {
@@ -147,7 +158,7 @@ function handleLogout() {
     if (isLiked) {
       api.deleteLike(card._id)
         .then((res) => {
-          setCards((state) => state.map((c) => c._id === card._id ? res : c))
+          setCardsLike(res, card);
         })
         .catch((err) => { console.log(err) })
 
@@ -155,11 +166,14 @@ function handleLogout() {
     else {
       api.putLike(card._id)
         .then((res) => {
-          setCards((state) => state.map((c) => c._id === card._id ? res : c))
+          setCardsLike(res, card);
         })
         .catch((err) => { console.log(err) })
     }
+  }
 
+  function setCardsLike(res, card) {
+    setCards((state) => state.map((c) => c._id === card._id ? res : c))
   }
 
   function handleCardDelete(card) {
@@ -184,20 +198,20 @@ function handleLogout() {
 
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, loggedIn }}>
+    <CurrentUserContext.Provider value={{ currentUser }}>
       <div className="App">
-        <Header onLogout={handleLogout} />
+        <Header loggedIn={loggedIn} location={location.pathname} onLogout={handleLogout} />
         <Switch>
-          <ProtectedRoute exact path="/react-mesto-auth/" loggedIn={loggedIn}>
+          <ProtectedRoute exact path="/" loggedIn={loggedIn}>
             <Main cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete}
               onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
               onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} />
           </ProtectedRoute>
-          <Route path="/react-mesto-auth/sign-up">
+          <Route path="/sign-up">
             <Register onRegister={handleRegister} />
             <InfoTooltip name="info-tooltip" isSubmitSucceed={isSubmitSucceed} isOpen={isInfoTooltipOpen} isClose={!isInfoTooltipOpen} onClose={closeInfoToolTip} />
           </Route>
-          <Route path="/react-mesto-auth/sign-in">
+          <Route path="/sign-in">
             <Login onLogin={handleLogin} />
           </Route>
         </Switch>
