@@ -14,7 +14,7 @@ import Login from './Login';
 import Register from './Register';
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from './InfoTooltip';
-import { registerApi, loginApi, getContent } from './Auth';
+import { registerApi, loginApi, getContent } from '../utils/Auth';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
