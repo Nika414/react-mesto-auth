@@ -60,7 +60,6 @@ function App() {
 
   const tokenCheck = () => {
     const jwt = localStorage.getItem("jwt");
-
     if (!jwt) return;
     getContent(jwt)
       .then((res) => res.json())
