@@ -29,7 +29,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     }
 
     return (
-        <PopupWithForm onClose={onClose} isOpen={isOpen} isClose={!isOpen} onSubmit={handleSubmit}
+        <PopupWithForm onClose={onClose} isOpen={isOpen} onSubmit={handleSubmit}
             name="edit-profile" title="Редактировать профиль" buttonText="Сохранить">
             <label className="popup__form-label">
                 <input onChange={handleNameChange} className="popup__form-item popup__form-item_value_name" type="text" name="name" id="fullname"

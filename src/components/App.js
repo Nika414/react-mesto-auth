@@ -9,7 +9,7 @@ import api from "../utils/api.js";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
-import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
@@ -27,7 +27,6 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isSubmitSucceed, setIsSubmitSucceed] = useState(true);
   const history = useHistory();
-  const location = useLocation();
 
   useEffect(() => {
     Promise.all([api.getProfileInfo(), api.getCardsInfo()])
@@ -127,7 +126,9 @@ function App() {
 
   function closeInfoToolTip() {
     setIsInfoTooltipOpen(false);
-    history.push("/sign-in");
+    if (isSubmitSucceed) {
+      history.push("/sign-in");
+    }
   }
 
   function handleUpdateUser(data) {
@@ -211,11 +212,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={{ currentUser }}>
       <div className="App">
-        <Header
-          loggedIn={loggedIn}
-          location={location.pathname}
-          onLogout={handleLogout}
-        />
+        <Header loggedIn={loggedIn} onLogout={handleLogout} />
         <Switch>
           <ProtectedRoute exact path="/" loggedIn={loggedIn}>
             <Main
@@ -229,16 +226,17 @@ function App() {
             />
           </ProtectedRoute>
           <Route path="/sign-up">
+            <Header loggedIn={loggedIn} onLogout={handleLogout} />
             <Register onRegister={handleRegister} />
             <InfoTooltip
               name="info-tooltip"
               isSubmitSucceed={isSubmitSucceed}
               isOpen={isInfoTooltipOpen}
-              isClose={!isInfoTooltipOpen}
               onClose={closeInfoToolTip}
             />
           </Route>
           <Route path="/sign-in">
+            <Header loggedIn={loggedIn} onLogout={handleLogout} />
             <Login onLogin={handleLogin} />
           </Route>
         </Switch>
@@ -252,7 +250,6 @@ function App() {
           onAddPlace={handleAddPlaceSubmit}
           onClose={closeAllPopups}
           isOpen={isAddPlacePopupOpen}
-          isClose={!isAddPlacePopupOpen}
         />
         <PopupWithForm name="delete-card" title="Вы уверены?" buttonText="Да" />
         <EditAvatarPopup

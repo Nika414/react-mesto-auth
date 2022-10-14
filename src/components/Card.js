@@ -4,7 +4,8 @@ import { useContext } from 'react';
 
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     const contextValue = useContext(CurrentUserContext);
-    const isOwn = card.owner._id === contextValue.currentUser_id;
+    
+    const isOwn = card.owner._id === contextValue.currentUser._id;
     const cardBinClassName = (
         `photo-cards__bin ${isOwn ? 'photo-cards__bin_visible' : 'photo-cards__bin_hidden'}`
     )

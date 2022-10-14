@@ -27,7 +27,7 @@ export default function AddPlacePopup({ onClose, isOpen, onAddPlace }) {
 
     }
 
-    return (<PopupWithForm onSubmit={handleSubmit} onClose={onClose} isOpen={isOpen} isClose={!isOpen} name="add-place" title="Новое место" buttonText="Создать">
+    return (<PopupWithForm onSubmit={handleSubmit} onClose={onClose} isOpen={isOpen} name="add-place" title="Новое место" buttonText="Создать">
 
         <label className="popup__form-label">
             <input onChange={handleNameChange} className="popup__form-item popup__form-item_value_placename" type="text" value={name} name="name" id="placename"

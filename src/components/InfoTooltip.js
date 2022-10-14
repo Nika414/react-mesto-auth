@@ -2,7 +2,7 @@ import successLogo from '../images/Union.svg'
 import errorLogo from '../images/Error.svg'
 
 
-function InfoTooltip({ name, isOpen, isClose, onClose, isSubmitSucceed }) {
+function InfoTooltip({ name, isOpen, onClose, isSubmitSucceed }) {
     let infoToolTipLogo;
     let infoToolTipText;
 
@@ -16,7 +16,7 @@ function InfoTooltip({ name, isOpen, isClose, onClose, isSubmitSucceed }) {
     }
 
     return (
-        <div className={`popup popup_purpose_${name} ${isOpen ? 'popup_opened' : ''} ${isClose ? 'popup__opened' : ''}`}  >
+        <div className={`popup popup_purpose_${name} ${isOpen ? 'popup_opened' : ''} ${!isOpen ? 'popup__opened' : ''}`}  >
             <div className={`popup__container popup__container_purpose_${name}`}>
                 <button className="popup__close-button" onClick={onClose} type="button" aria-label="Закрыть"></button>
                 <img src={infoToolTipLogo} alt="Знак успешной регистрации" className={`popup__${name}-image`} />
