@@ -225,7 +225,7 @@ function App() {
             />
           </ProtectedRoute>
           <Route path="/sign-up">
-            <Header loggedIn={loggedIn} onLogout={handleLogout} />
+          
             <Register onRegister={handleRegister} />
             <InfoTooltip
               name="info-tooltip"
@@ -235,7 +235,6 @@ function App() {
             />
           </Route>
           <Route path="/sign-in">
-            <Header loggedIn={loggedIn} onLogout={handleLogout} />
             <Login onLogin={handleLogin} />
           </Route>
         </Switch>

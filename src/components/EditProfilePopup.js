@@ -35,7 +35,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
                 <input onChange={handleNameChange} className="popup__form-item popup__form-item_value_name" type="text" name="name" id="fullname"
                     placeholder="Имя" required minLength="2" maxLength="40" value={name || ''} />
                 <span className="fullname-input-error popup__form-item-error"></span>
-            </label>,
+            </label>
             <label className="popup__form-label">
                 <input onChange={handleBioChange} className="popup__form-item popup__form-item_value_about" type="text" name="about" id="about"
                     placeholder="О себе" required minLength="2" maxLength="200" value={bio || ''} />
