@@ -51,7 +51,7 @@ function App() {
           ...currentUser,
           email: email,
         });
-        history.push("/");
+        history.push("/react-mesto-auth");
       })
       .catch((error) => {
         console.log(error);
@@ -65,7 +65,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setLoggedIn(true);
-        history.push("/");
+        history.push("/react-mesto-auth");
         setCurrentUser({
           ...currentUser,
           email: data.data.email,
@@ -213,7 +213,7 @@ function App() {
       <div className="App">
         <Header loggedIn={loggedIn} onLogout={handleLogout} />
         <Switch>
-          <ProtectedRoute exact path="/" loggedIn={loggedIn}>
+          <ProtectedRoute exact path="/react-mesto-auth" loggedIn={loggedIn}>
             <Main
               cards={cards}
               onCardLike={handleCardLike}
