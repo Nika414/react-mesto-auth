@@ -77,7 +77,7 @@
 
 /* POPUP удаления карточки */
 @import url(./blocks/popup/__delete-card-container/popup__delete-card-container.css);
-@import url(./blocks/popup/__delete-button/popup__delete-button.css);
+
 
 
 @import url(./blocks/popup/__avatar-edit-text/popup__avatar-edit-text.css);

@@ -15,6 +15,7 @@ import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import { registerApi, loginApi, getContent } from "../utils/Auth";
+import PopupWithConfirmation from "./PopupWithConfirmation";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -27,7 +28,10 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isSubmitSucceed, setIsSubmitSucceed] = useState(true);
   const [email, setEmail] = useState();
+  const [cardForDelete, setCardForDelete] = useState({});
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
   const history = useHistory();
+
   useEffect(() => {
     Promise.all([api.getProfileInfo(), api.getCardsInfo()])
       .then(([dataUser, dataCards]) => {
@@ -64,10 +68,10 @@ function App() {
     getContent(jwt)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         setLoggedIn(true);
         history.push("/react-mesto-auth");
-        setEmail(data.data.email)
+        setEmail(data.data.email);
       })
       .catch((error) => {
         console.log(error);
@@ -118,6 +122,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setIsDeleteCardPopupOpen(false);
     setSelectedCard({});
   }
 
@@ -127,7 +132,10 @@ function App() {
       history.push("/sign-in");
     }
   }
-
+  function handleDeleteCardClick(card) {
+    setCardForDelete(card);
+    setIsDeleteCardPopupOpen(true);
+  }
   function handleUpdateUser(data) {
     api
       .changeInfo(data)
@@ -215,7 +223,7 @@ function App() {
             <Main
               cards={cards}
               onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+              onCardDelete={handleDeleteCardClick}
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
               onEditAvatar={handleEditAvatarClick}
@@ -223,7 +231,6 @@ function App() {
             />
           </ProtectedRoute>
           <Route path="/sign-up">
-          
             <Register onRegister={handleRegister} />
             <InfoTooltip
               name="info-tooltip"
@@ -252,6 +259,15 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+        />
+        <PopupWithConfirmation
+          name="delete-card"
+          title="Вы уверены?"
+          buttonText="Да"
+          isOpen={isDeleteCardPopupOpen}
+          onClose={closeAllPopups}
+          onSubmit={handleCardDelete}
+          card={cardForDelete}
         />
         <ImagePopup onClose={closeAllPopups} card={selectedCard} />
       </div>

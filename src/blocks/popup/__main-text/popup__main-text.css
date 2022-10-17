@@ -10,3 +10,13 @@
     margin: 34px auto 38px auto;
     padding: 0;
 }
+
+@media screen and (max-width:550px) {
+    .popup__main-text {
+        width: 282px;
+        font-size: 18px;
+        text-align: center;
+        margin: 34px auto 0 auto;
+    }
+    
+}
