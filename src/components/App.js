@@ -68,7 +68,6 @@ function App() {
     getContent(jwt)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setLoggedIn(true);
         history.push("/react-mesto-auth");
         setEmail(data.data.email);
@@ -200,6 +199,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
+      closeAllPopups();
   }
 
   function handleAddPlaceSubmit(newCard) {
