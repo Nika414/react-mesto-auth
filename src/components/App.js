@@ -26,8 +26,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isSubmitSucceed, setIsSubmitSucceed] = useState(true);
+  const [email, setEmail] = useState();
   const history = useHistory();
-
   useEffect(() => {
     Promise.all([api.getProfileInfo(), api.getCardsInfo()])
       .then(([dataUser, dataCards]) => {
@@ -64,12 +64,10 @@ function App() {
     getContent(jwt)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setLoggedIn(true);
         history.push("/react-mesto-auth");
-        setCurrentUser({
-          ...currentUser,
-          email: data.data.email,
-        });
+        setEmail(data.data.email)
       })
       .catch((error) => {
         console.log(error);
@@ -211,7 +209,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={{ currentUser }}>
       <div className="App">
-        <Header loggedIn={loggedIn} onLogout={handleLogout} />
+        <Header loggedIn={loggedIn} onLogout={handleLogout} email={email} />
         <Switch>
           <ProtectedRoute exact path="/react-mesto-auth" loggedIn={loggedIn}>
             <Main

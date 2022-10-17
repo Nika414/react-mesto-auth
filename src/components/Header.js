@@ -1,18 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import logo from "../images/Vector.svg";
 import { Switch, Route, Link } from "react-router-dom";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import menuButton from "../images/Menu.svg";
 import closeButton from "../images/Close-button.svg";
 
-function Header({ onLogout, loggedIn }) {
+function Header({ onLogout, loggedIn, email }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   function toggleMenu() {
     setMenuOpen(!menuOpen);
   }
 
-  const contextValue = useContext(CurrentUserContext);
+  
   if (loggedIn) {
     return (
       <header className={`header ${menuOpen ? "header_menu-opened" : ""}`}>
@@ -33,7 +32,7 @@ function Header({ onLogout, loggedIn }) {
               menuOpen ? "header__user-info_menu-opened" : ""
             }`}
           >
-            {contextValue.currentUser.email}
+            {email}
           </p>
           <Link
             to="/sign-in"

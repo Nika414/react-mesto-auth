@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../images/Vector.svg";
+
 
 export default function Register({ onRegister }) {
   const [state, setState] = useState({
