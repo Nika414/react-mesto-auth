@@ -17,6 +17,7 @@ import InfoTooltip from "./InfoTooltip";
 import { registerApi, loginApi, getContent } from "../utils/Auth";
 import PopupWithConfirmation from "./PopupWithConfirmation";
 
+
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -216,6 +217,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={{ currentUser }}>
+   
       <div className="App">
         <Header loggedIn={loggedIn} onLogout={handleLogout} email={email} />
         <Switch>
@@ -271,7 +273,7 @@ function App() {
         />
         <ImagePopup onClose={closeAllPopups} card={selectedCard} />
       </div>
-    </CurrentUserContext.Provider>
+      </CurrentUserContext.Provider>
   );
 }
 

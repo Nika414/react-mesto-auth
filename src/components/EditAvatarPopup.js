@@ -5,7 +5,10 @@ import { useRef } from 'react';
 export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
     const avatarRef = useRef();
 
-    function handleSubmit(e) {
+    
+
+    function onSubmit(e) {
+     
         e.preventDefault();
         onUpdateAvatar({
             avatar: avatarRef.current.value,
@@ -18,11 +21,11 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
     }
 
     return (
-        <PopupWithForm onSubmit={handleSubmit} onClose={onClose} isOpen={isOpen} name="avatar-edit" title="Обновить аватар" buttonText="Сохранить">
+        <PopupWithForm onSubmit={onSubmit} onClose={onClose} isOpen={isOpen} name="avatar-edit" title="Обновить аватар" buttonText="Сохранить">
             <label className="popup__form-label_value_avatar-link popup__form-label">
-                <input ref={avatarRef} className="popup__form-item popup__form-item_value_avatar-link" type="url" name="avatar" id="avatar"
-                    placeholder="Ссылка на твой новый аватар" minLength="2" required />
-                <span className="avatar-input-error popup__form-item-error"></span>
+                <input name="avatar"className="popup__form-item popup__form-item_value_avatar-link" ref={avatarRef} type="url" id="avatar"
+                    placeholder="Ссылка на твой новый аватар" minLength="2" />
+                <span className={`avatar-input-error popup__form-item-error'}`}></span>
             </label>
         </PopupWithForm>)
 }

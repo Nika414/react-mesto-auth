@@ -1,4 +1,4 @@
-function PopupWithForm({ name, isOpen, onClose, buttonText, title, children, onSubmit }) {
+function PopupWithForm({ name, isOpen, onClose, buttonText, title, children, onSubmit, isValid }) {
 
     return (
         <div className={`popup popup_purpose_${name} ${isOpen ? 'popup_opened' : ''} `}  >
@@ -7,7 +7,7 @@ function PopupWithForm({ name, isOpen, onClose, buttonText, title, children, onS
                 <h2 className="popup__title">{title}</h2>
                 <form onSubmit={onSubmit} className={`popup__form popup__${name}-form`} name={`popup__${name}-form`} method="post" noValidate>
                     {children}
-                    <button className="popup__form-button" type="submit">{buttonText}</button>
+                    <button className={`popup__form-button ${isValid ? '' : 'popup__form-button_inactive'}`} type="submit">{buttonText}</button>
                 </form>
             </div>
         </div>
