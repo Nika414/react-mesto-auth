@@ -1,5 +1,5 @@
 import PopupWithForm from "./PopupWithForm";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useForm } from "react-hook-form";
 
 export default function AddPlacePopup({ onClose, isOpen, onAddPlace }) {
