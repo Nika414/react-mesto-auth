@@ -6,12 +6,12 @@ export default function AddPlacePopup({ onClose, isOpen, onAddPlace }) {
   const {
     register,
     reset,
-    formState,
-    formState: { errors, isValid},
+    formState: { errors, isValid },
     handleSubmit,
   } = useForm({
-    mode: "onTouched",
-    reValidateMode: "onChange",
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+    criteriaMode: 'all'
   });
 
   useEffect(() => {
@@ -65,6 +65,10 @@ export default function AddPlacePopup({ onClose, isOpen, onAddPlace }) {
         <input
           {...register("link", {
             required: "Поле обязательно к заполнению",
+            pattern: {
+                value: /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
+                message: "Введите URL"
+            }
           })}
           type="url"
           className="popup__form-item popup__form-item_value_placelink"
