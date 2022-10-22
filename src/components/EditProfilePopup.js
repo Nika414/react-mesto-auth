@@ -1,37 +1,30 @@
 import PopupWithForm from "./PopupWithForm";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { useForm } from "react-hook-form";
 
 export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const contextValue = useContext(CurrentUserContext);
-  const [name, setName] = useState("");
-  const [bio, setBio] = useState("");
-
-  useEffect(() => {
-    setName(contextValue.currentUser.name);
-    setBio(contextValue.currentUser.about);
-  }, [contextValue.currentUser, isOpen]);
-
+  
   const {
     register,
     reset,
     formState: { errors, isValid },
     handleSubmit,
-   
   } = useForm({
     mode: "onChange",
     reValidateMode: "onChange",
     criteriaMode: "all",
   });
 
- 
+  useEffect(() => {
+    if (isOpen) {
+        reset({ name: contextValue.currentUser.name, about: contextValue.currentUser.about});
+      }
+  }, [contextValue.currentUser, isOpen, reset]);
 
   function onSubmit(data) {
-    onUpdateUser({
-      name: data.name,
-      about: data.about,
-    });
+    onUpdateUser(data);
   }
 
   return (
@@ -56,16 +49,15 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
               value: 40,
               message: "Максимум 40 символов",
             },
-            onChange: (e) => setName(e.target.value)
+            
           })}
-        
           className="popup__form-item popup__form-item_value_name"
           type="text"
           id="fullname"
           placeholder="Имя"
           minLength="2"
           maxLength="40"
-          value={name || ''}
+         
         />
         <span
           className={`fullname-input-error popup__form-item-error ${
@@ -87,16 +79,15 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
               value: 200,
               message: "Максимум 200 символов",
             },
-            onChange: (e) => setBio(e.target.value)
+            
           })}
-          
           className="popup__form-item popup__form-item_value_about"
           type="text"
           id="about"
           placeholder="О себе"
           minLength="2"
           maxLength="200"
-          value={bio || ''}
+          
         />
         <span
           className={`about-input-error popup__form-item-error ${
