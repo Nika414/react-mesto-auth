@@ -2,7 +2,7 @@ import PopupWithForm from "./PopupWithForm";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
   const {
     register,
     reset,
@@ -31,9 +31,10 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       isOpen={isOpen}
       name="avatar-edit"
       title="Обновить аватар"
-      buttonText="Сохранить"
+      buttonText={isLoading ? "Сохранение..." : "Создать"}
       isValid={isValid}
     >
+        
       <label className="popup__form-label_value_avatar-link popup__form-label">
         <input
           {...register("avatar", {

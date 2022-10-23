@@ -17,7 +17,6 @@ import InfoTooltip from "./InfoTooltip";
 import { registerApi, loginApi, getContent } from "../utils/Auth";
 import PopupWithConfirmation from "./PopupWithConfirmation";
 
-
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -31,6 +30,7 @@ function App() {
   const [email, setEmail] = useState();
   const [cardForDelete, setCardForDelete] = useState({});
   const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -137,6 +137,7 @@ function App() {
     setIsDeleteCardPopupOpen(true);
   }
   function handleUpdateUser(data) {
+    setIsLoading(true);
     api
       .changeInfo(data)
       .then((res) => {
@@ -145,18 +146,27 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        closeAllPopups();
+        setIsLoading(false);
       });
   }
 
   function handleUpdateAvatar(data) {
+    setIsLoading(true);
     api
       .changeAvatar(data)
       .then((res) => {
         setCurrentUser(res);
-        closeAllPopups();
+        
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        closeAllPopups();
+        setIsLoading(false);
       });
   }
 
@@ -200,10 +210,11 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-      closeAllPopups();
+    closeAllPopups();
   }
 
   function handleAddPlaceSubmit(newCard) {
+    setIsLoading(true);
     api
       .createCard(newCard)
       .then((res) => {
@@ -212,12 +223,15 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        closeAllPopups();
+        setIsLoading(false);
       });
   }
 
   return (
     <CurrentUserContext.Provider value={{ currentUser }}>
-   
       <div className="App">
         <Header loggedIn={loggedIn} onLogout={handleLogout} email={email} />
         <Switch>
@@ -250,17 +264,20 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          isLoading={isLoading}
         />
         <AddPlacePopup
           onAddPlace={handleAddPlaceSubmit}
           onClose={closeAllPopups}
           isOpen={isAddPlacePopupOpen}
+          isLoading={isLoading}
         />
         <PopupWithForm name="delete-card" title="Вы уверены?" buttonText="Да" />
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          isLoading={isLoading}
         />
         <PopupWithConfirmation
           name="delete-card"
@@ -273,7 +290,7 @@ function App() {
         />
         <ImagePopup onClose={closeAllPopups} card={selectedCard} />
       </div>
-      </CurrentUserContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 

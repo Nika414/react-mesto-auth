@@ -1,22 +1,27 @@
 import PopupWithForm from "./PopupWithForm";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-export default function AddPlacePopup({ onClose, isOpen, onAddPlace }) {
+export default function AddPlacePopup({
+  onClose,
+  isOpen,
+  onAddPlace,
+  isLoading,
+}) {
   const {
     register,
     reset,
     formState: { errors, isValid },
     handleSubmit,
   } = useForm({
-    mode: 'onChange',
-    reValidateMode: 'onChange',
-    criteriaMode: 'all'
+    mode: "onChange",
+    reValidateMode: "onChange",
+    criteriaMode: "all",
   });
 
   useEffect(() => {
     if (isOpen) {
-      reset({ name: '', link:''});
+      reset({ name: "", link: "" });
     }
   }, [isOpen]);
 
@@ -31,7 +36,7 @@ export default function AddPlacePopup({ onClose, isOpen, onAddPlace }) {
       isOpen={isOpen}
       name="add-place"
       title="Новое место"
-      buttonText="Создать"
+      buttonText={isLoading ? "Сохранение..." : "Создать"}
       isValid={isValid}
     >
       <label className="popup__form-label">
@@ -66,9 +71,10 @@ export default function AddPlacePopup({ onClose, isOpen, onAddPlace }) {
           {...register("link", {
             required: "Поле обязательно к заполнению",
             pattern: {
-                value: /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
-                message: "Введите URL"
-            }
+              value:
+                /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
+              message: "Введите URL",
+            },
           })}
           type="url"
           className="popup__form-item popup__form-item_value_placelink"

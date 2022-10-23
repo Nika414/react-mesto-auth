@@ -3,7 +3,7 @@ import { useEffect, useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { useForm } from "react-hook-form";
 
-export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+export default function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
   const contextValue = useContext(CurrentUserContext);
   
   const {
@@ -34,7 +34,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       isOpen={isOpen}
       name="edit-profile"
       title="Редактировать профиль"
-      buttonText="Сохранить"
+      buttonText={isLoading ? "Сохранение..." : "Сохранить"}
       isValid={isValid}
     >
       <label className="popup__form-label">
