@@ -39,7 +39,7 @@ export default function AddPlacePopup({
       buttonText={isLoading ? "Сохранение..." : "Создать"}
       isValid={isValid}
     >
-      <label className="popup__form-label">
+      <label className="form__label">
         <input
           {...register("name", {
             required: "Поле обязательно к заполнению",
@@ -59,14 +59,14 @@ export default function AddPlacePopup({
           maxLength="30"
         />
         <span
-          className={`placename-input-error popup__form-item-error ${
-            errors?.name && "popup__form-item-error_active"
+          className={`form__item-error ${
+            errors?.name && "form__item-error_active"
           }`}
         >
           {errors?.name?.message}
         </span>
       </label>
-      <label className="popup__form-label">
+      <label className="form__label">
         <input
           {...register("link", {
             required: "Поле обязательно к заполнению",
@@ -82,8 +82,8 @@ export default function AddPlacePopup({
           placeholder="Ссылка на картинку"
         />
         <span
-          className={`placelink-input-error popup__form-item-error ${
-            errors?.link && "popup__form-item-error_active"
+          className={`form__item-error ${
+            errors?.link && "form__item-error_active"
           }`}
         >
           {errors?.link?.message}

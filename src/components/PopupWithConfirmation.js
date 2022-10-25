@@ -34,7 +34,7 @@ function PopupWithConfirmation({
           method="post"
           noValidate
         >
-          <button className="popup__form-button popup__delete-button" type="submit">
+          <button className="form__button popup__delete-button" type="submit">
             {buttonText}
           </button>
         </form>

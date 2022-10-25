@@ -1,4 +1,4 @@
-.popup__form-item-error {
+.form__item-error {
     overflow: hidden;
     width: 358px;
     height: fit-content;
@@ -14,13 +14,13 @@
     margin-bottom: 13px;
 }
 
-.popup__form-item-error:nth-of-type(2) {
+.form__item-error:nth-of-type(2) {
     left: 36px;
     top: 200px;
 }
 
 @media screen and (max-width:550px) {
-    .popup__form-item-error {
+    .form__item-error {
         width: 238px;
     }
 }

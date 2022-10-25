@@ -18,7 +18,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoa
     if (isOpen) {
       reset({ avatar: "" });
     }
-  }, [isOpen]);
+  }, [isOpen, reset]);
 
   function onSubmit(data) {
     onUpdateAvatar(data);
@@ -35,7 +35,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoa
       isValid={isValid}
     >
         
-      <label className="popup__form-label_value_avatar-link popup__form-label">
+      <label className="form__label">
         <input
           {...register("avatar", {
             required: "Поле обязательно к заполнению",
@@ -45,7 +45,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoa
             },
             pattern: {
               value:
-                /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
+                /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/,
               message: "Введите URL",
             },
           })}
@@ -55,8 +55,8 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoa
           placeholder="Ссылка на твой новый аватар"
         />
         <span
-          className={`avatar-input-error popup__form-item-error ${
-            errors?.avatar && "popup__form-item-error_active"
+          className={`form__item-error ${
+            errors?.avatar && "form__item-error_active"
           }`}
         >
           {errors?.avatar?.message}

@@ -55,15 +55,10 @@
 @import url(./blocks/popup/_opened/popup_opened.css);
 @import url(./blocks/popup/__close-button/popup__close-button.css);
 @import url(./blocks/popup/__container/popup__container.css);
-@import url(./blocks/popup/__form-button/popup__form-button.css);
-@import url(./blocks/popup/__form-button/_inactive/popup__form-item_inactive.css);
 @import url(./blocks/popup/__form-item/popup__form-item.css);
 @import url(./blocks/popup/__form-item/_type_error/popup__form-item_type_error.css);
 @import url(./blocks/popup/__form/popup__form.css);
 @import url(./blocks/popup/__title/popup__title.css);
-@import url(./blocks/popup/__form-item-error/popup__form-item-error.css);
-@import url(./blocks/popup/__form-item-error/_active/popup__form-item-error_active.css);
-@import url(./blocks/popup/__form-label/popup__form-label.css);
 @import url(./blocks/popup/__main-text/popup__main-text.css);
 
 /*POPUP открытия фото на всю стр*/
@@ -81,7 +76,7 @@
 
 
 @import url(./blocks/popup/__avatar-edit-text/popup__avatar-edit-text.css);
-@import url(./blocks/popup/__form-label/_value_avatar-link/popup__form-label_value_avatar-link.css);
+
 
 /*Auth*/
 
@@ -94,7 +89,14 @@
 @import url(./blocks/registration/__text/registration__text.css);
 @import url(./blocks/registration/__link/registration__link.css);
 
-/*{POPUP регистрации*/
+/*POPUP регистрации*/
 @import url(./blocks/popup/__container/_purpose/popup__container_purpose_info-tooltip.css);
 @import url(./blocks/popup/__info-tooltop-image/popup__info-tooltip-image.css);
 @import url(./blocks/popup/__info-tooltip-text/popup__info-tooltip-text.css);
+
+/*FORM*/
+@import url(./blocks/form/__label/form__label.css);
+@import url(./blocks/form/__item-error/form__item-error.css);
+@import url(./blocks/form/__item-error/_active/form__item-error_active.css);
+@import url(./blocks/form/__button/form__button.css);
+@import url(./blocks/form/__button/_inactive/form__button_inactive.css);

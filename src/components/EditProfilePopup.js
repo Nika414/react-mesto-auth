@@ -37,7 +37,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoad
       buttonText={isLoading ? "Сохранение..." : "Сохранить"}
       isValid={isValid}
     >
-      <label className="popup__form-label">
+      <label className="form__label">
         <input
           {...register("name", {
             required: "Поле обязательно к заполнению",
@@ -60,14 +60,14 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoad
          
         />
         <span
-          className={`fullname-input-error popup__form-item-error ${
-            errors?.name && "popup__form-item-error_active"
+          className={`form__item-error ${
+            errors?.name && "form__item-error_active"
           }`}
         >
           {errors?.name?.message}
         </span>
       </label>
-      <label className="popup__form-label">
+      <label className="form__label">
         <input
           {...register("about", {
             required: "Поле обязательно к заполнению",
@@ -90,8 +90,8 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoad
           
         />
         <span
-          className={`about-input-error popup__form-item-error ${
-            errors?.about && "popup__form-item-error_active"
+          className={`form__item-error ${
+            errors?.about && "form__item-error_active"
           }`}
         >
           {errors?.about?.message}
