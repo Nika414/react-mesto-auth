@@ -52,10 +52,7 @@ function App() {
         if (!res.token) throw new Error("Missing jwt");
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
-        setCurrentUser({
-          ...currentUser,
-          email: email,
-        });
+        setEmail(email)
         history.push("/react-mesto-auth");
       })
       .catch((error) => {
