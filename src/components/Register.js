@@ -15,12 +15,12 @@ export default function Register({ onRegister }) {
   });
 
   useEffect(() => {
-    reset({ email: "", password: "" });
+    reset({ email: "", password: ""});
   }, [reset]);
 
   
   function onSubmit(data) {
-    onRegister(data);
+    onRegister(data.password, data.email);
   }
 
   return (
@@ -84,7 +84,7 @@ export default function Register({ onRegister }) {
           </span>
         </label>
         <button
-          className={`registration__form-button auth__form-button ${isValid}`}
+          className={`registration__form-button auth__form-button ${isValid ? "" : "form__button_inactive"}`}
           type="submit"
         >
           Зарегистрироваться
