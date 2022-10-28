@@ -24,6 +24,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoa
     onUpdateAvatar(data);
   }
 
+
   return (
     <PopupWithForm
       onSubmit={handleSubmit(onSubmit)}
@@ -33,6 +34,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoa
       title="Обновить аватар"
       buttonText={isLoading ? "Сохранение..." : "Создать"}
       isValid={isValid}
+      
     >
         
       <label className="form__label">

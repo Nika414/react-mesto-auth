@@ -52,7 +52,7 @@ function App() {
         if (!res.token) throw new Error("Missing jwt");
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
-        setEmail(email)
+        setEmail(email);
         history.push("/react-mesto-auth");
       })
       .catch((error) => {
@@ -156,7 +156,6 @@ function App() {
       .changeAvatar(data)
       .then((res) => {
         setCurrentUser(res);
-        
       })
       .catch((err) => {
         console.log(err);
