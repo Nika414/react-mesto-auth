@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-export default function Login({ onLogin }) {
+export default function Login({ onLogin, isLoginSucceed  }) {
   const {
     register,
     reset,
@@ -73,6 +73,7 @@ export default function Login({ onLogin }) {
             }`}
           >
             {errors?.password?.message}
+            {isLoginSucceed === false && 'Неправильный логин или пароль'}
           </span>
         </label>
       <button className={`login__form-button auth__form-button ${isValid ? "" : "form__button_inactive"}`} type="submit">

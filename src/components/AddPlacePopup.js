@@ -23,7 +23,7 @@ export default function AddPlacePopup({
     if (isOpen) {
       reset({ name: "", link: "" });
     }
-  }, [isOpen]);
+  }, [isOpen, reset]);
 
   function onSubmit(data) {
     onAddPlace(data);

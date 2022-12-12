@@ -31,9 +31,14 @@ function App() {
   const [cardForDelete, setCardForDelete] = useState({});
   const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoginSucceed, setIsLoginSuceed] = useState(true);
   const history = useHistory();
 
+
+
+
   useEffect(() => {
+
     Promise.all([api.getProfileInfo(), api.getCardsInfo()])
       .then(([dataUser, dataCards]) => {
         setCurrentUser(dataUser);
@@ -49,9 +54,10 @@ function App() {
     loginApi(password, email)
       .then((res) => res.json())
       .then((res) => {
-        if (!res.token) throw new Error("Missing jwt");
+        if (!res.token) { setIsLoginSuceed(false); throw new Error("Missing jwt"); }
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
+        setIsLoginSuceed(true);
         setEmail(email);
         history.push("/react-mesto-auth");
       })
@@ -252,7 +258,7 @@ function App() {
             />
           </Route>
           <Route path="/sign-in">
-            <Login onLogin={handleLogin} />
+            <Login onLogin={handleLogin} isLoginSucceed={isLoginSucceed} />
           </Route>
         </Switch>
         <Footer />
